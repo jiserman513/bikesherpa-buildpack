@@ -58,7 +58,6 @@ curl --silent --max-time 60 --location "$LPNG_URL" | tar xz
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 cp $LP_DIR/conf/php.ini php
-mkdir $APACHE_PATH/cert
 
 # make php available on bin
 mkdir -p bin
