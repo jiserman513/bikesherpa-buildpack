@@ -30,7 +30,11 @@ if [ -f www/Procfile ]; then
   mv www/Procfile .
 fi
 
-APACHE_URL="http://heroku.codeculture.de/apache.tar.gz"
+if [$APACHE_URL == ""]; then
+	echo "-----> Apache Path not defined, using internal"
+	APACHE_URL="http://heroku.codeculture.de/apache.tar.gz"
+fi
+
 echo "-----> Bundling Apache version $APACHE_VERSION"
 curl --silent --max-time 60 --location "$APACHE_URL" | tar xz
 
@@ -54,6 +58,7 @@ curl --silent --max-time 60 --location "$LPNG_URL" | tar xz
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 cp $LP_DIR/conf/php.ini php
+mkdir $APACHE_PATH/cert
 
 # make php available on bin
 mkdir -p bin
