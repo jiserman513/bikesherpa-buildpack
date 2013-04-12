@@ -30,7 +30,7 @@ if [ -f www/Procfile ]; then
   mv www/Procfile .
 fi
 
-if [$APACHE_URL == ""]; then
+if $APACHE_URL === "" then
 	echo "-----> Apache Path not defined, using internal"
 	APACHE_URL="http://heroku.codeculture.de/apache.tar.gz"
 fi
